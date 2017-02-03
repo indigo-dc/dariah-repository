@@ -1,0 +1,1 @@
+../web/CONTRIBUTING.rst

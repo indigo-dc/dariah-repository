@@ -1,0 +1,53 @@
+{#
+# This file is part of Zenodo.
+# Copyright (C) 2016 CERN.
+#
+# Zenodo is free software; you can redistribute it
+# and/or modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of the
+# License, or (at your option) any later version.
+#
+# Zenodo is distributed in the hope that it will be
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Zenodo; if not, write to the
+# Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+# MA 02111-1307, USA.
+#
+# In applying this license, CERN does not
+# waive the privileges and immunities granted to it by virtue of its status
+# as an Intergovernmental Organization or submit itself to any jurisdiction.
+-#}
+{%- if current_user|has_record_perm(record, 'update') %}
+<form action="{{ url_for('zenodo_deposit.edit', pid_value=pid.pid_value) }}" method="POST">
+    <button class="btn btn-warning btn-block" type="submit" {{ 'disabled' if not record.doi or not record._deposit.id else ''}}><i class="fa fa-pencil-square-o"></i> Edit</button>
+</form>
+{%- endif %}
+{%- if current_user|has_record_perm(record, 'delete') %}
+<!-- Single button -->
+<div class="btn-group btn-block">
+  <button type="button" class="btn btn-xs btn-block btn-default  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Admin <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="{{ url_for('persistentidentifier.index_view', flt1_21=record.id) }}">
+      Persistent identifiers
+    </a></li>
+    <li><a href="{{ url_for('recordmetadata.details_view', id=record.id) }}">
+      Record
+    </a></li>
+    {% if record.files %}
+    <li><a href="{{ url_for('bucket.details_view', id=record.files.bucket) }}">
+      Bucket
+    </a></li>
+    {%- endif %}
+    <li role="separator" class="divider"></li>
+    <li><a href="{{ url_for('zenodo_deposit.delete', pid_value=pid.pid_value) }}" type="submit">
+      <span class="text-danger"><i class="fa fa-trash"></i> Delete ...</span>
+    </a></li>
+  </ul>
+</div>
+{%- endif %}

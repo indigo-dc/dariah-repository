@@ -1,0 +1,144 @@
+{#
+# This file is part of Zenodo.
+# Copyright (C) 2015, 2016 CERN.
+#
+# Zenodo is free software; you can redistribute it
+# and/or modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of the
+# License, or (at your option) any later version.
+#
+# Zenodo is distributed in the hope that it will be
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Zenodo; if not, write to the
+# Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+# MA 02111-1307, USA.
+#
+# In applying this license, CERN does not
+# waive the privileges and immunities granted to it by virtue of its status
+# as an Intergovernmental Organization or submit itself to any jurisdiction.
+-#}
+
+{%- extends config.RECORDS_UI_BASE_TEMPLATE %}
+
+{%- from "zenodo_records/macros/accessright.html" import accessright_label -%}
+{%- from "zenodo_records/macros/objecttype.html" import objecttype_label -%}
+{%- from "zenodo_records/macros/altmetric.html" import almetric_badge -%}
+{%- from "zenodo_records/macros/authors.html" import authors, contributors -%}
+
+{%- set title = record.title + " | " + config.THEME_SITENAME -%}
+{%- set publication_date = record.publication_date|from_isodate -%}
+{%- set embargo_date = record.get('embargo_date', None)|from_isodate -%}
+{%- set object_type = record.resource_type|objecttype %}
+
+{%- block head %}
+{{super()}}
+{%- include "zenodo_records/meta.html" %}
+{%- endblock head %}
+
+{%- block page_body %}
+<div class="container record-detail">
+  <div class="row" itemscope itemtype="{{object_type['schema.org']}}">
+    <div class="col-sm-8 col-md-8 col-left">
+      {%- block record_body %}
+      <p>
+        <time itemprop="datePublished" datetime="{{ publication_date|dateformat(format='long') }}" data-toggle="tooltip" title="{{_("Publication date")}}">{{ publication_date|dateformat(format='long') }}</time>
+        <span class="pull-right">
+          {{ objecttype_label(object_type, lang=current_i18n.language) }}
+          {{ accessright_label(record.access_right, embargo_date=embargo_date) }}
+        </span>
+      </p>
+      <h1 itemprop="name">{{ record.title }}</h1>
+      <p>{{ authors(record.creators) }}</p>
+      {%- if record.contributors %}
+        <p>{{ contributors(record.contributors) }}</p>
+      {%- endif %}
+      {%- if record.thesis and record.thesis.supervisors %}
+        <h5>{{_('Thesis supervisor(s)')}}</h5>
+        <p>{{ authors(record.thesis.supervisors) }}</p>
+      {%- endif %}
+      <p itemprop="description">{{ record.description|safe }}</p>
+      {%- if record.notes %}
+      <div class="alert alert-warning">
+        {{ record.notes}}
+      </div>
+      {%- endif %}
+      {%- endblock record_body %}
+      {%- block record_body_extra %}
+      {%- set files = record.files if current_user|has_record_perm(record, 'read-files') else [] %}
+      {%-  include "zenodo_records/box/preview.html" %}
+      {%-  include "zenodo_records/box/files.html" %}
+      {%-  include "zenodo_records/box/references.html" %}
+      {%- endblock record_body_extra %}
+    </div>
+    <div class="col-sm-4 col-md-4 col-right">
+      {%- include "zenodo_records/box/edit.html" %}
+      {%- set pending_comms, accepted_comms, all_pending_comms, all_comms = community_curation(record, current_user) %}
+      {% if pending_comms or accepted_comms %}
+      <div class="well metadata">
+        {%- include "zenodo_records/box/curate.html" %}
+      </div>
+      {% endif %}
+      {%- if record.doi %}
+        {{ almetric_badge(record.doi, css_class='well') }}
+      {%- endif %}
+      {%- include "zenodo_records/box/publishedin.html" %}
+      <div class="well metadata">
+        {%- set resolved_record = record.replace_refs() %}
+        {%- include "zenodo_records/box/info.html" %}
+      </div>
+      <div class="well">
+        {%- include "zenodo_records/box/share.html" %}
+      </div>
+      <div class="well">
+        {%- include "zenodo_records/box/export.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+{%- endblock %}
+
+{%- block javascript %}{{super()}}
+<script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+<script type="text/javascript">
+  // Bootstrap the Invenio CSL Formatter
+  require([
+    "jquery",
+    'typeahead.js',
+    'bloodhound',
+    "node_modules/angular/angular",
+    "node_modules/invenio-csl-js/dist/invenio-csl-js",
+    "js/zenodo/module",
+    ], function(typeahead, Bloodhound) {
+      angular.element(document).ready(function() {
+        angular.bootstrap(document.getElementById("invenio-csl"), [
+            'invenioCsl',
+          ]
+        );
+      });
+    }
+  );
+  require([
+    "jquery",
+    "js/zenodo/functions",
+    ], function($, recordCommunityCurate) {
+      $(function () {
+        $("#recordCommunityCuration .btn").click(recordCommunityCurate);
+        $('.preview-link').on('click', function(event) {
+          $('#preview').show();
+          var filename = encodeURIComponent($(event.target).data('filename'));
+          $('#preview-iframe').attr("src","{{ url_for('invenio_records_ui.recid_preview', pid_value=record.recid, filename='') }}" + filename);
+        });
+      });
+    }
+  );
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5137aff66ad9c2a1"></script>
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+{%- endblock %}

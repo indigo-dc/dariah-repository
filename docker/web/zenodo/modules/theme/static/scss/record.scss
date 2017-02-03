@@ -1,0 +1,121 @@
+// This file is part of Zenodo.
+// Copyright (C) 2015, 2016 CERN.
+//
+// Zenodo is free software; you can redistribute it
+// and/or modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of the
+// License, or (at your option) any later version.
+//
+// Zenodo is distributed in the hope that it will be
+// useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Zenodo; if not, write to the
+// Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+// MA 02111-1307, USA.
+//
+// In applying this license, CERN does not
+// waive the privileges and immunities granted to it by virtue of its status
+// as an Intergovernmental Organization or submit itself to any jurisdiction.
+
+.record-detail .col-right .btn-block {
+  margin-bottom: 10px;
+}
+
+
+.well {
+  word-wrap: break-word;
+
+  dl {
+    margin-bottom: 0;
+  }
+  dd {
+    padding-left: 10px;
+    margin-bottom: 4px;
+
+    .label {
+      display: inline-block;
+      margin-top: 2px;
+      line-height: inherit;
+      text-align: left;
+      white-space: normal;
+
+    }
+
+    a.label-link {
+      color: #fff;
+      text-decoration: none;
+
+      &:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+
+    }
+
+    a.label-external-link {
+      color: #fff;
+
+      &:hover {
+        color: $brand-primary;
+      }
+    }
+  }
+}
+
+.inline-orcid {
+    height: $font-size-base;
+}
+
+.preview-iframe {
+    border: none
+}
+
+#files {
+    .table {
+        margin-bottom: 0px;
+    }
+}
+
+.record-elem {
+    h4 {
+        a {
+            color: black;
+        }
+        a:hover {
+            color: #777;
+        }
+    }
+    p {
+        a {
+            color: black;
+        }
+        a:hover {
+            color: #777;
+            text-decoration: none;
+        }
+    }
+}
+
+.get-badge {
+    cursor: pointer;
+}
+
+#invenio-csl {
+  .twitter-typeahead .tt-menu {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .twitter-typeahead .tt-suggestion {
+    white-space: normal;
+  }
+
+  .empty-results {
+    padding-left: 10px;
+    margin-bottom: 0px;
+  }
+}

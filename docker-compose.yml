@@ -18,7 +18,7 @@ frontend:
   volumes_from:
     - static
 web:
-  build: .
+  build: ./docker/web/
   restart: "always"
   command: uwsgi /code/zenodo/docker/uwsgi/uwsgi.ini
   # command: zenodo run -h 0.0.0.0 -p 5000
@@ -45,7 +45,7 @@ web:
   volumes_from:
     - static
 worker:
-  build: .
+  build: ./docker/worker/
   restart: "always"
   command: "celery worker -A zenodo.celery --loglevel=INFO"
   environment:
@@ -118,7 +118,7 @@ es:
     - "9300:9300"
 static:
   restart: "no"
-  build: .
+  build: ./docker/static/
   command: tail -f /var/log/*
   user: zenodo
   volumes:
