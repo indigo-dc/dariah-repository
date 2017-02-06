@@ -63,7 +63,7 @@ RUN zenodo npm \
 RUN adduser --uid 1000 --disabled-password --gecos '' zenodo \
     && chown -R zenodo:zenodo /code ${APP_INSTANCE_PATH}
 
-COPY ./docker-entrypoint.sh /
+COPY ./docker/docker-entrypoint.sh /
 
 RUN mkdir -p /usr/local/var/data && \
     chown zenodo:zenodo /usr/local/var/data -R && \
