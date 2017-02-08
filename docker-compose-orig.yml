@@ -1,5 +1,8 @@
+# Original docker-compose file from https://github.com/zenodo/zenodo
+# DO NOT USE THIS FILE - remove later 
+
 lb:
-  image: ddavidov/dariah-repository:lb
+  build: ./docker/haproxy/
   restart: "always"
   ports:
     - "80:80"
@@ -8,7 +11,7 @@ lb:
   links:
     - frontend
 frontend:
-  image: ddavidov/dariah-repository:frontend
+  build: ./docker/nginx/
   restart: "always"
   ports:
     - "81:80"
@@ -18,7 +21,7 @@ frontend:
   volumes_from:
     - static
 web:
-  image: ddavidov/dariah-repository:web
+  build: .
   restart: "always"
   command: uwsgi /code/zenodo/docker/uwsgi/uwsgi.ini
   # command: zenodo run -h 0.0.0.0 -p 5000
@@ -45,7 +48,7 @@ web:
   volumes_from:
     - static
 worker:
-  image: ddavidov/dariah-repository:web
+  build: .
   restart: "always"
   command: "celery worker -A zenodo.celery --loglevel=INFO"
   environment:
@@ -77,7 +80,7 @@ kibana:
   links:
     - es
 statsd:
-  image: ddavidov/dariah-repository:statsd
+  build: ./docker/statsd/
   restart: "always"
   ports:
     - "8125/udp:8125/udp"
@@ -111,14 +114,14 @@ mq:
     - "5672:5672"
   read_only: true
 es:
-  image: ddavidov/dariah-repository:elasticsearch
+  build: ./docker/es/
   restart: "always"
   ports:
     - "9200:9200"
     - "9300:9300"
 static:
   restart: "no"
-  image: ddavidov/dariah-repository:web
+  build: .
   command: tail -f /var/log/*
   user: zenodo
   volumes:
