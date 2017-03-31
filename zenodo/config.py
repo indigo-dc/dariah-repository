@@ -651,7 +651,7 @@ RECORDS_REST_SORT_OPTIONS = dict(
             order=4,
         ),
         conference_session=dict(
-            fields=['meetings.session:asc', 'meetings.session_part:desc'],
+            fields=['meeting.session', '-meeting.session_part'],
             title='Conference session',
             default_order='desc',
             order=4,
@@ -915,7 +915,7 @@ USERPROFILES_EXTEND_SECURITY_FORMS = True
 #: Default database host.
 SQLALCHEMY_DATABASE_URI = os.environ.get(
     "SQLALCHEMY_DATABASE_URI",
-    "postgresql+psycopg2://localhost/zenodo")
+    "postgresql+psycopg2://zenodo:zenodo@localhost/zenodo")
 #: Do not print SQL queries to console.
 SQLALCHEMY_ECHO = False
 #: Track modifications to objects.

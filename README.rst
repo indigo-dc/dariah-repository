@@ -22,25 +22,16 @@
     as an Intergovernmental Organization or submit itself to any jurisdiction.
 
 ============================
- DARIAH repository - Easy deployment in the Cloud environment
+ DARIAH repository
 ============================
-
-.. image:: https://img.shields.io/travis/zenodo/zenodo.svg
-..   :target: https://travis-ci.org/zenodo/zenodo
-
-.. image:: https://img.shields.io/coveralls/zenodo/zenodo.svg
-..   :target: https://coveralls.io/r/zenodo/zenodo
-
-.. image:: https://landscape.io/github/zenodo/zenodo/master/landscape.svg?style=flat
-..   :target: https://landscape.io/github/zenodo/zenodo/master
-..   :alt: Code Health
 
 .. image:: https://img.shields.io/github/license/zenodo/zenodo.svg
    :target: https://github.com/zenodo/zenodo/blob/master/LICENSE
-
+   
 DARIAH-repository is a service developed by the EU H2020 INDIGO-DataCloud project and
-is based on the Zenodo repository. The goal of the DARIAH-repository is to enable 
-researchers, research groups and projects to easily create, host and manage their own
+is based on the `Zenodo https://github.com/zenodo/zenodo` repository. The goal of the 
+DARIAH-repository is to enable researchers, research groups and projects from digital arts and
+humanities to easily create, host and manage their own
 Invenio-based repository in the cloud environment.
 
 Powered by Invenio & Zenodo
@@ -53,12 +44,8 @@ the web.
 
 Installation
 ============
-See INSTALL.rst
+See `INSTALL.rst <https://github.com/indigo-dc/dariah-repository/blob/master/INSTALL.rst>`_
 
-Developer documentation
-=======================
-.. Replace with the link to the installation instructions
-.. See https://zenodo.readthedocs.io/
 
 License
 =======
