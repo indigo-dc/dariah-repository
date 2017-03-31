@@ -25,15 +25,15 @@
  DARIAH repository - Easy deployment in the Cloud environment
 ============================
 
-#.. image:: https://img.shields.io/travis/zenodo/zenodo.svg
-#   :target: https://travis-ci.org/zenodo/zenodo
+.. image:: https://img.shields.io/travis/zenodo/zenodo.svg
+..   :target: https://travis-ci.org/zenodo/zenodo
 
-#.. image:: https://img.shields.io/coveralls/zenodo/zenodo.svg
-#   :target: https://coveralls.io/r/zenodo/zenodo
+.. image:: https://img.shields.io/coveralls/zenodo/zenodo.svg
+..   :target: https://coveralls.io/r/zenodo/zenodo
 
-#.. image:: https://landscape.io/github/zenodo/zenodo/master/landscape.svg?style=flat
-#   :target: https://landscape.io/github/zenodo/zenodo/master
-#   :alt: Code Health
+.. image:: https://landscape.io/github/zenodo/zenodo/master/landscape.svg?style=flat
+..   :target: https://landscape.io/github/zenodo/zenodo/master
+..   :alt: Code Health
 
 .. image:: https://img.shields.io/github/license/zenodo/zenodo.svg
    :target: https://github.com/zenodo/zenodo/blob/master/LICENSE
@@ -46,7 +46,7 @@ Invenio-based repository in the cloud environment.
 Powered by Invenio & Zenodo
 ------------------
 DARIAH-repository is a small layer on top of the Zenodo 
-`Zenodo <https://github.com/zenodo/zenodo>`, a ​free software
+`<https://github.com/zenodo/zenodo>`, a ​free software
 suite enabling you to run your own ​digital library or document repository on
 the web.
 
@@ -57,8 +57,8 @@ See INSTALL.rst
 
 Developer documentation
 =======================
-# Replace with the link to the installation instructions
-# See https://zenodo.readthedocs.io/
+.. Replace with the link to the installation instructions
+.. See https://zenodo.readthedocs.io/
 
 License
 =======
