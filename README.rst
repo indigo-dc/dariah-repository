@@ -26,18 +26,18 @@
 ============================
 
 .. image:: https://img.shields.io/github/license/zenodo/zenodo.svg
-   :target: https://github.com/zenodo/zenodo/blob/master/LICENSE
+   :target: https://github.com/indigo-dc/dariah-repository/blob/master/LICENSE
    
 DARIAH-repository is a service developed by the EU H2020 INDIGO-DataCloud project and
-is based on the `Zenodo https://github.com/zenodo/zenodo` repository. The goal of the 
+is based on the `Zenodo <https://github.com/zenodo/zenodo>` repository. The goal of the 
 DARIAH-repository is to enable researchers, research groups and projects from digital arts and
 humanities to easily create, host and manage their own
 Invenio-based repository in the cloud environment.
 
 Powered by Invenio & Zenodo
 ------------------
-DARIAH-repository is a small layer on top of the Zenodo 
-`<https://github.com/zenodo/zenodo>`, a ​free software
+DARIAH-repository is a small layer on top of the `Zenodo 
+<https://github.com/zenodo/zenodo>`, a ​free software
 suite enabling you to run your own ​digital library or document repository on
 the web.
 

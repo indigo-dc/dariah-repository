@@ -20,7 +20,7 @@ frontend:
 web:
   image: indigodatacloudapps/dariah-repository:web
   restart: "always"
-  command: uwsgi /code/zenodo/docker/uwsgi/uwsgi.ini
+  command: /usr/local/bin/python /code/zenodo/scripts/init.py
   # command: zenodo run -h 0.0.0.0 -p 5000
   ports:
     - "5000:5000"
@@ -42,6 +42,8 @@ web:
     - mq
     - db
     - statsd
+#  volumes:
+#    - ~/dariah-repository/scripts:/scripts
   volumes_from:
     - static
 worker:
@@ -83,6 +85,7 @@ worker:
 statsd:
   image: indigodatacloudapps/dariah-repository:statsd
   restart: "always"
+#  command: bash /init.sh
   ports:
     - "8125/udp:8125/udp"
   environment:
