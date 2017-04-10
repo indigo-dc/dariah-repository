@@ -30,23 +30,11 @@ We presume that all installation is done in the home directory (``~`` in Linux b
     $ git checkout master
     $ docker-compose up
 
-Keep the session with the docker-compose above alive, and in a new shell
-run the init script which creates the database tables, search indexes
-and some data fixtures:
+(OPTIONAL) Load the demo records and index them:
 
 .. code-block:: console
 
-    $ cd ~/dariah-repository
-    $ docker-compose run --rm statsd bash /init.sh
-
-Next, load the demo records and index them:
-
-.. code-block:: console
-
-    $ docker-compose run --rm web zenodo fixtures loaddemorecords
-    $ docker-compose run --rm web zenodo migration recordsrun
-    $ docker-compose run --rm web zenodo migration reindex -t recid
-    $ docker-compose run --rm web zenodo index run -d
+    $ docker-compose run --rm web /bin/bash /code/zenodo/scripts/loadDemo.sh
 
 Now visit the following URL in your browser:
 
