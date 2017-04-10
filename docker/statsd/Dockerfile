@@ -3,4 +3,5 @@ RUN npm install -g statsd git://github.com/markkimsal/statsd-elasticsearch-backe
 COPY config.js /opt/statsd/config.js
 COPY init.sh /init.sh
 EXPOSE 8125/udp
-CMD statsd /opt/statsd/config.js
+#CMD statsd /opt/statsd/config.js
+CMD bash /init.sh

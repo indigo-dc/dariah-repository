@@ -21,7 +21,7 @@ def main():
 	""" Wait for other services to start """
 	f.write("[web] Sleeping for 30 secs...\n")
 #	os.system('sleep 30')
-	sleep(20)
+	sleep(35)
 
 	print("[web] checking if db exists...")
 	f.write("[web] checking if db exists...\n")
