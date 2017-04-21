@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+sed -i "s/ES_PORT/$ES_PORT/" /opt/statsd/config.js 
+sed -i "s/ES_HOST/$ES_HOST/" /opt/statsd/config.js
+
 statsd /opt/statsd/config.js &
 
 echo "Sleeping for 15sec..."
