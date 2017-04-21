@@ -5,8 +5,8 @@
   deleteCounters: true,
   flushInterval: 10 * 1000,
   elasticsearch: {
-    port:          9200,
-    host:          "es",
+    port:          ES_PORT,
+    host:          "ES_HOST",
     path:          "/",
     indexPrefix:   "statsd",
     //indexTimestamp: "year",  //for index statsd-2015

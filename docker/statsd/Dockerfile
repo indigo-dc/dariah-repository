@@ -4,4 +4,6 @@ COPY config.js /opt/statsd/config.js
 COPY init.sh /init.sh
 EXPOSE 8125/udp
 #CMD statsd /opt/statsd/config.js
+ENV ES_HOST es
+ENV ES_PORT 9200
 CMD bash /init.sh
