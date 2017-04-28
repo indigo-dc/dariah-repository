@@ -15,7 +15,7 @@ def main():
 	postgres_user = os.environ['DB_ENV_POSTGRES_USER']
 	postgres_db = os.environ['DB_ENV_POSTGRES_DB']
 	postgres_pass = os.environ['DB_ENV_POSTGRES_PASSWORD']
-	postgres_host = "db_1" 
+	postgres_host = os.environ['DB_ENV_POSTGRES_HOST']
 
 
 	""" Wait for other services to start """
