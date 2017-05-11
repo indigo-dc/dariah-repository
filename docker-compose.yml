@@ -102,7 +102,6 @@ mq:
   ports:
     - "15672:15672"
     - "5672:5672"
-  read_only: true
 es:
   image: indigodatacloudapps/dariah-repository:elasticsearch
   restart: "always"
