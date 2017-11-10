@@ -20,8 +20,8 @@ frontend:
 web:
   image: indigodatacloudapps/dariah-repository:web
   restart: "always"
-  command: /usr/local/bin/python /code/zenodo/scripts/init.py
-  # command: zenodo run -h 0.0.0.0 -p 5000
+  command: /bin/bash /code/zenodo/scripts/start.sh
+#  command: zenodo run -h 0.0.0.0 -p 5000
   ports:
     - "5000:5000"
   environment:
@@ -31,7 +31,7 @@ web:
     - "APP_CACHE_TYPE=redis"
     - "APP_CELERY_RESULT_BACKEND=redis://cache:6379/2"
     - "APP_SEARCH_ELASTIC_HOSTS=['es:9200']"
-    - "APP_SECRET_KEY=CHANGE_ME"
+    - "APP_SECRET_KEY=passw0rd"
     - "APP_SECURE_SESSION_COOKIE=True"
     - "APP_STATSD_HOST=statsd"
     - "APP_SQLALCHEMY_DATABASE_URI=postgresql://zenodo:zenodo@db/zenodo"
@@ -72,7 +72,7 @@ statsd:
   image: indigodatacloudapps/dariah-repository:statsd
   restart: "always"
   ports:
-    - "8125/udp:8125/udp"
+    - "8125:8125/udp"
   environment:
     - "ES_HOST=es"
     - "ES_PORT=9200"
@@ -111,7 +111,7 @@ es:
 static:
   restart: "no"
   image: indigodatacloudapps/dariah-repository:web
-  command: tail -f /var/log/*
+  command: tail -f /var/log/faillog
   user: zenodo
   volumes:
     - "/usr/local/var/instance/static"
