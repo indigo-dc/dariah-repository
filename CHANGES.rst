@@ -25,6 +25,6 @@
 Changes
 =======
 
-Version 2.0.0 (released TBD)
+.. Version 2.0.0 (released TBD)
 
-- Major refactoring to move from Invenio 2.x to 3.x.
+.. - Major refactoring to move from Invenio 2.x to 3.x.

@@ -6,7 +6,7 @@ DARIAH-repository docker installation (local installation)
 
 Requirements
 ~~~~~~~~~~~~~~~~~~~
-DARIAH-repository is a forked github project from `ZENODO <https://github.com/zenodo/zenodo>` and depends on PostgreSQL, Elasticsearch 2.x, Redis and RabbitMQ.
+DARIAH-repository is a forked github project from `ZENODO <https://github.com/zenodo/zenodo/>` and depends on PostgreSQL, Elasticsearch 2.x, Redis and RabbitMQ.
 
 If you are only interested in running DARIAH-repository locally, follow the Docker
 installation guide below.
@@ -30,11 +30,24 @@ We presume that all installation is done in the home directory (``~`` in Linux b
     $ git checkout master
     $ docker-compose up
 
-(OPTIONAL) Load the demo records and index them:
+The initialization script creates the database tables, search indexes and some data fixtures are run automatically during the start of the repository, together with loading some demo records. Check starting script file for more info:
 
 .. code-block:: console
 
-    $ docker-compose run --rm web /bin/bash /code/zenodo/scripts/loadDemo.sh
+    $ ~/dariah-repository/scripts/start.sh
+
+DARIAH repository initialization scripts:
+
+.. code-block:: console
+
+    $ ~/dariah-repository/scripts/init.sh
+    $ ~/dariah-repository/scripts/index.sh
+
+Loading demo records:
+
+.. code-block:: console
+
+    $ ~/dariah-repository/scripts/loadDemo.sh
 
 Now visit the following URL in your browser:
 
